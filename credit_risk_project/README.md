@@ -312,7 +312,7 @@ Das LGD-Modell verfügt über keine separate Holdout-Testmenge.
 Die Ergebnisse sind daher primär für analytische und prototypische Zwecke geeignet.
 10. Future Improvements
 
-Mögliche Erweiterungen des Projekts sind:
+**Mögliche Erweiterungen des Projekts sind**:
 
 PD Calibration
 Probability of Default Binning
