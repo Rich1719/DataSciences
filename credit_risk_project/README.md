@@ -279,7 +279,7 @@ Die Delta Tables in Databricks stellen dabei die zentrale Datenbasis dar. Die CS
 
 Der gesamte Modellierungsprozess folgt der Struktur:
 
-```mermaid
+```
 Credit Data
      │
      ▼
