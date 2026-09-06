@@ -75,6 +75,7 @@ Das Projekt verwendet eine klassische Medallion Architecture:
                     Portfolio Risk
                        Analysis
 Repository Structure
+```text
 credit-risk-project/
 │
 ├── README.md
@@ -100,6 +101,8 @@ credit-risk-project/
 ├── requirements.txt
 │
 └── .gitignore
+
+
 1. Data Engineering
 Bronze Layer
 
