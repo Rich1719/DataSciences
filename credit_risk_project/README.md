@@ -102,7 +102,7 @@ credit-risk-project/
 │
 └── .gitignore
 
-
+```
 1. Data Engineering
 Bronze Layer
 
@@ -261,7 +261,7 @@ Die Expected-Loss-Quote von 28,63 % beschreibt den erwarteten Verlust im Verhäl
 
 Die wichtigsten Ergebnisse werden als CSV-Dateien im Repository bereitgestellt:
 
-```text
+```
 results/
 │
 ├── expected_loss_results.csv
@@ -271,6 +271,8 @@ results/
 ├── credit_risk_kpi_portfolio.csv
 └── credit_risk_kpi_status.csv
 
+```
+
 Die Delta Tables in Databricks stellen dabei die zentrale Datenbasis dar. Die CSV-Dateien dienen primär der Weitergabe, Dokumentation und Visualisierung der aggregierten Ergebnisse.
 
 8. Modeling Approach
@@ -278,20 +280,27 @@ Die Delta Tables in Databricks stellen dabei die zentrale Datenbasis dar. Die CS
 Der gesamte Modellierungsprozess folgt der Struktur:
 
 ```mermaid
-flowchart TD
-    A[Credit Data] --> B[Data Preparation]
-    B --> C[Feature Engineering]
-
-    C --> D[PD Model]
-    C --> E[LGD Model]
-
-    D --> F[Expected Loss]
-    E --> F
-
-    C --> G[EAD]
-    G --> F
-
-    F --> H[Portfolio Analysis]
+Credit Data
+     │
+     ▼
+Data Preparation
+     │
+     ▼
+Feature Engineering
+     │
+     ├───────────────┐
+     ▼               ▼
+    PD              LGD
+     │               │
+     └───────┬───────┘
+             ▼
+            EAD
+             │
+             ▼
+      Expected Loss
+             │
+             ▼
+    Portfolio Analysis
 ```
 
 Die Modellierung verwendet separate Trainings- und Validierungsdaten. Für das finale PD-Modell wurde der Testdatensatz erst nach der Modellauswahl zur abschließenden Evaluation verwendet.
