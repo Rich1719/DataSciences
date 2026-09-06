@@ -1,5 +1,5 @@
-Credit Risk Analytics – PD, LGD, EAD & Expected Loss
-Projektübersicht
+# Credit Risk Analytics – PD, LGD, EAD & Expected Loss
+## Projektübersicht
 
 Dieses Projekt entwickelt eine End-to-End Credit-Risk-Analytics-Pipeline zur Quantifizierung des Kreditrisikos auf Einzelkredit- und Portfolioebene.
 
@@ -11,11 +11,11 @@ Exposure at Default (EAD) – erwartetes Exposure zum Zeitpunkt des Ausfalls
 
 Aus diesen Parametern wird anschließend der Expected Loss (EL) berechnet:
 
-Expected Loss = PD × LGD × EAD
+**Expected Loss = PD × LGD × EAD**
 
 Das Projekt kombiniert Databricks, PySpark, Machine Learning und Delta Tables und folgt einer strukturierten Bronze-Silver-Gold-Datenarchitektur.
 
-Projektziele
+## Projektziele
 
 Ziel des Projekts ist es, einen reproduzierbaren Workflow für die Analyse und Modellierung von Kreditrisiken aufzubauen.
 
@@ -74,7 +74,8 @@ Das Projekt verwendet eine klassische Medallion Architecture:
                            ▼
                     Portfolio Risk
                        Analysis
-Repository Structure
+## Repository Structure
+```text
 credit-risk-project/
 │
 ├── README.md
@@ -100,14 +101,16 @@ credit-risk-project/
 ├── requirements.txt
 │
 └── .gitignore
-1. Data Engineering
+
+```
+## 1. Data Engineering
 Bronze Layer
 
 Die Bronze-Schicht enthält die initial geladenen Kreditdaten.
 
 Notebook:
 
-A. 01_Credit_Risk_bronze
+### A. 01_Credit_Risk_bronze
 
 Ziel der Bronze-Schicht ist die strukturierte Speicherung der Rohdaten als Ausgangspunkt für die weitere Verarbeitung.
 
@@ -117,7 +120,7 @@ In der Silver-Schicht werden die Daten bereinigt, transformiert und für die wei
 
 Notebook:
 
-B. 02_Credit_Risk_silver
+### B. 02_Credit_Risk_silver
 
 Typische Verarbeitungsschritte umfassen:
 
@@ -132,7 +135,7 @@ Die Gold-Schicht enthält aggregierte und analytisch nutzbare Kreditrisiko-KPIs.
 
 Notebook:
 
-C. 03_Credit_Risk_gold
+### C. 03_Credit_Risk_gold
 
 Unter anderem wurden folgende KPI-Tabellen erstellt:
 
@@ -143,7 +146,7 @@ Unter anderem wurden folgende KPI-Tabellen erstellt:
 
 Diese Tabellen dienen als Grundlage für Portfolioanalysen und Reporting.
 
-2. Probability of Default (PD)
+## 2. Probability of Default (PD)
 
 Die Probability of Default (PD) beschreibt die geschätzte Wahrscheinlichkeit, dass ein Kreditnehmer ausfällt.
 
@@ -161,7 +164,7 @@ Als zentrale Bewertungsmetrik wurde die ROC-AUC verwendet.
 
 Die Logistic Regression erzielte mit einer ROC-AUC von 0,6895 das beste Validierungsergebnis und wurde daher als finales PD-Modell ausgewählt.
 
-Finales PD-Modell
+**Finales PD-Modell**
 
 Logistic Regression
 regParam = 0.01
@@ -172,7 +175,7 @@ Für die Modellierung wurde außerdem ein Class Weighting eingesetzt, um die ung
 
 Die kontinuierliche PD wird anschließend für die Expected-Loss-Berechnung verwendet.
 
-3. Loss Given Default (LGD)
+## 3. Loss Given Default (LGD)
 
 Die Loss Given Default (LGD) beschreibt den erwarteten Verlustanteil eines Kredits nach Eintritt eines Defaults.
 
@@ -204,7 +207,7 @@ RMSE = 0.2478
 
 Daher wurde die Linear Regression als finales LGD-Modell ausgewählt.
 
-4. Exposure at Default (EAD)
+## 4. Exposure at Default (EAD)
 
 Der Exposure at Default (EAD) beschreibt das erwartete Kreditengagement zum Zeitpunkt eines möglichen Ausfalls.
 
@@ -214,7 +217,7 @@ EAD = funded_amnt
 
 Diese Annahme ermöglicht die Berechnung des Expected Loss auf Einzelkredit- und Portfolioebene.
 
-5. Expected Loss
+## 5. Expected Loss
 
 Der Expected Loss wird aus den drei Risikoparametern berechnet:
 
@@ -240,7 +243,7 @@ Für jeden Kredit werden die Werte PD, LGD, EAD und Expected_Loss berechnet.
 Die Ergebnisse werden in folgender Datei bereitgestellt:
 
 results/expected_loss_results.csv
-6. Portfolio Results
+## 6. Portfolio Results
 
 Die Portfolioanalyse liefert folgende zentrale Ergebnisse:
 
@@ -254,10 +257,11 @@ Average Expected Loss	€3,082.70
 
 Die Expected-Loss-Quote von 28,63 % beschreibt den erwarteten Verlust im Verhältnis zum gesamten Exposure des analysierten Portfolios.
 
-7. Results
+## 7. Results
 
 Die wichtigsten Ergebnisse werden als CSV-Dateien im Repository bereitgestellt:
 
+```
 results/
 │
 ├── expected_loss_results.csv
@@ -267,12 +271,15 @@ results/
 ├── credit_risk_kpi_portfolio.csv
 └── credit_risk_kpi_status.csv
 
+```
+
 Die Delta Tables in Databricks stellen dabei die zentrale Datenbasis dar. Die CSV-Dateien dienen primär der Weitergabe, Dokumentation und Visualisierung der aggregierten Ergebnisse.
 
-8. Modeling Approach
+## 8. Modeling Approach
 
 Der gesamte Modellierungsprozess folgt der Struktur:
 
+```
 Credit Data
      │
      ▼
@@ -294,10 +301,11 @@ Feature Engineering
              │
              ▼
     Portfolio Analysis
+```
 
 Die Modellierung verwendet separate Trainings- und Validierungsdaten. Für das finale PD-Modell wurde der Testdatensatz erst nach der Modellauswahl zur abschließenden Evaluation verwendet.
 
-9. Limitations
+## 9. Limitations
 
 Das Projekt stellt eine analytische und vereinfachte Credit-Risk-Modellierung dar und ist nicht als regulatorisches IFRS-9- oder Basel-Modell zu verstehen.
 
@@ -312,7 +320,7 @@ Das LGD-Modell verfügt über keine separate Holdout-Testmenge.
 Die Ergebnisse sind daher primär für analytische und prototypische Zwecke geeignet.
 10. Future Improvements
 
-Mögliche Erweiterungen des Projekts sind:
+**Mögliche Erweiterungen des Projekts sind**:
 
 PD Calibration
 Probability of Default Binning
