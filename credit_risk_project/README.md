@@ -261,13 +261,15 @@ Die Expected-Loss-Quote von 28,63 % beschreibt den erwarteten Verlust im Verhäl
 
 Die wichtigsten Ergebnisse werden als CSV-Dateien im Repository bereitgestellt:
 
-### Results
-
-- `expected_loss_results.csv`
-- `credit_risk_kpi_default_grade.csv`
-- `credit_risk_kpi_grade.csv`
-- `credit_risk_kpi_portfolio.csv`
-- `credit_risk_kpi_status.csv`
+```text
+results/
+│
+├── expected_loss_results.csv
+│
+├── credit_risk_kpi_default_grade.csv
+├── credit_risk_kpi_grade.csv
+├── credit_risk_kpi_portfolio.csv
+└── credit_risk_kpi_status.csv
 
 Die Delta Tables in Databricks stellen dabei die zentrale Datenbasis dar. Die CSV-Dateien dienen primär der Weitergabe, Dokumentation und Visualisierung der aggregierten Ergebnisse.
 
