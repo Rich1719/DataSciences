@@ -273,27 +273,22 @@ Die Delta Tables in Databricks stellen dabei die zentrale Datenbasis dar. Die CS
 
 Der gesamte Modellierungsprozess folgt der Struktur:
 
-Credit Data
-     │
-     ▼
-Data Preparation
-     │
-     ▼
-Feature Engineering
-     │
-     ├───────────────┐
-     ▼               ▼
-    PD              LGD
-     │               │
-     └───────┬───────┘
-             ▼
-            EAD
-             │
-             ▼
-      Expected Loss
-             │
-             ▼
-    Portfolio Analysis
+```mermaid
+flowchart TD
+    A[Credit Data] --> B[Data Preparation]
+    B --> C[Feature Engineering]
+
+    C --> D[PD Model]
+    C --> E[LGD Model]
+
+    D --> F[Expected Loss]
+    E --> F
+
+    C --> G[EAD]
+    G --> F
+
+    F --> H[Portfolio Analysis]
+```
 
 Die Modellierung verwendet separate Trainings- und Validierungsdaten. Für das finale PD-Modell wurde der Testdatensatz erst nach der Modellauswahl zur abschließenden Evaluation verwendet.
 
